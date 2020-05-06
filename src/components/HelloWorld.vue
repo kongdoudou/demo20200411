@@ -56,7 +56,7 @@
 </template>
 
 <script>
-  import axios from 'axios'
+  const axios = require("axios");
   export default {
     name: 'HelloWorld',
     data() {
@@ -64,7 +64,13 @@
         showAry: []
       }
     },
+    async created() {
+      const fetcher = this.$createFetcher(() => this.$store.dispatch('getItems'));
+      console.log('fetch');
+      await fetcher();
+    },
     beforeMount() {
+      console.log('该去请求客户端数据了');
       this.getData();
     },
     methods: {
@@ -98,6 +104,23 @@
         min = min < 10 ? '0' + min : min;
         sec = sec < 10 ? '0' + sec : sec;
         return min + ":" + sec
+      }
+    },
+    computed: {
+      preItems() {
+        let preItems = this.$store.state.preItems;
+        preItems.map(item => {
+          if(item.mixinVideo) {
+            item.name = item.mixinVideo.name;
+            item.url = item.mixinVideo.url;
+            item.likeNum = item.mixinVideo.likeNum;
+            item.duration = item.mixinVideo.duration;
+            item.imageUrl = item.mixinVideo.imageUrl.replace(/\.(jpg|png|jpeg)$/, function(data) {
+              return '_1080_608' + data
+            })
+          }
+        });
+        return preItems;
       }
     }
   }

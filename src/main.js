@@ -3,9 +3,11 @@
 import Vue from 'vue'
 import HelloWorld from './components/HelloWorld.vue'
 import createRouter from './router'
+import axios from 'axios'
 
 const router = createRouter();
 
+Vue.prototype.$http = axios;
 
 Vue.config.productionTip = false
 

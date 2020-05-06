@@ -15,6 +15,7 @@ app.get('*',(request,response) => {
         // if(query.build) {
         //   template = null;
         // }
+
         let render = vueRender.createBundleRenderer(serverBundle,{
             template,
             clientManifest:clientBundle.data,

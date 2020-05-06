@@ -1,5 +1,6 @@
 const Vue = require("vue");
 const Router = require('vue-router');
+// import Router from 'vue-router';
 const HelloWorld = () => import('@/components/HelloWorld');
 
 Vue.use(Router);

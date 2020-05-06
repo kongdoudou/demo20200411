@@ -21,6 +21,7 @@ export default () => {
         let preItems = [];
         if(itemResult.code === 'A00000' && itemResult.data && itemResult.data.items) {
           preItems = itemResult.data.items;
+          console.log(preItems);
           console.log('preItems', preItems.length);
         }
         commit('setItems', preItems)
